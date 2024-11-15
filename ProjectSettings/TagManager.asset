@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - platform
+  - Enemy
+  - Hazard
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Platform
+  - Player
+  - Enemy
+  - Exttras
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: platform
+    uniqueID: 819789429
+    locked: 0
+  - name: Decorations
+    uniqueID: 3592451337
+    locked: 0
+  - name: Player
+    uniqueID: 1311520663
+    locked: 0
+  - name: Ground
+    uniqueID: 3715968033
+    locked: 0
