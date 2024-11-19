@@ -24,13 +24,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float invincibilityDuration = 2f;
     private bool isInvincible = false;
 
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float dashAcceleration = 30f;
+    [SerializeField] private float dashCooldown = 1f;
+    private bool isDashing = false;
+    private bool canDash = true;
+
+    [Header("Dash Particle Effect")]
+    [SerializeField] private ParticleSystem dashEffect;
+
     private Rigidbody2D playerRb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private int jumpCount = 0;
 
-    // To store the original move speed
     private float originalMoveSpeed;
 
     void Start()
@@ -41,15 +51,28 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Store the original move speed
         originalMoveSpeed = moveSpeed;
+
+        // Ensure the dash effect is stopped initially
+        if (dashEffect != null)
+        {
+            dashEffect.Stop();
+        }
     }
 
     void Update()
     {
-        HandleMovement();
-        HandleJump();
+        if (!isDashing)
+        {
+            HandleMovement();
+            HandleJump();
+        }
         UpdateAnimation();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isDashing)
+        {
+            StartCoroutine(SmoothDashCoroutine());
+        }
     }
 
     private void HandleMovement()
@@ -99,6 +122,53 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
+    private IEnumerator SmoothDashCoroutine()
+    {
+        isDashing = true;
+        canDash = false;
+
+        // Start particle effect
+        if (dashEffect != null)
+        {
+            dashEffect.Play();
+        }
+
+        float direction = spriteRenderer.flipX ? -1f : 1f;
+        float targetSpeed = dashSpeed * direction;
+        float originalGravity = playerRb.gravityScale;
+        playerRb.gravityScale = 0; // Disable gravity for smooth horizontal motion
+
+        // Gradually accelerate to dash speed
+        while (Mathf.Abs(playerRb.velocity.x) < Mathf.Abs(targetSpeed))
+        {
+            playerRb.velocity = new Vector2(Mathf.MoveTowards(playerRb.velocity.x, targetSpeed, dashAcceleration * Time.deltaTime), 0);
+            yield return null;
+        }
+
+        // Maintain dash speed for dash duration
+        yield return new WaitForSeconds(dashDuration);
+
+        // Gradually decelerate back to zero
+        while (Mathf.Abs(playerRb.velocity.x) > 0)
+        {
+            playerRb.velocity = new Vector2(Mathf.MoveTowards(playerRb.velocity.x, 0, dashAcceleration * Time.deltaTime), 0);
+            yield return null;
+        }
+
+        playerRb.gravityScale = originalGravity; // Restore gravity
+        isDashing = false;
+
+        // Stop particle effect
+        if (dashEffect != null)
+        {
+            dashEffect.Stop();
+        }
+
+        // Wait for cooldown
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (groundCheckPoint != null)
@@ -115,10 +185,8 @@ public class PlayerMovement : MonoBehaviour
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
 
-            // Trigger the hurt animation when the player takes damage
             StartCoroutine(HurtAnimationCoroutine());
 
-            // After hurt animation, check for death
             if (currentHealth <= 0)
             {
                 Die();
@@ -132,53 +200,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void Die()
     {
-        // Play the death animation
         anim.SetTrigger("Die");
-
-        // Start the scene reload after a delay to allow the death animation to play
         StartCoroutine(ReloadScene());
     }
 
     private IEnumerator ReloadScene()
     {
-        // Wait for the duration of the death animation to play (adjust time for your animation length)
         yield return new WaitForSeconds(0.8f);
-        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator HurtAnimationCoroutine()
     {
-        // Play the hurt animation once when the player takes damage
         anim.SetTrigger("Hurt");
-
-        // Wait for the hurt animation to finish before continuing
         yield return new WaitForSeconds(0.1f);
     }
 
     private IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
-
-        // Reduce player speed during invincibility
         moveSpeed = originalMoveSpeed * invincibleMoveSpeedFactor;
 
-        // Wait for the invincibility duration
         yield return new WaitForSeconds(invincibilityDuration);
 
-        // Restore original player speed after invincibility ends
         moveSpeed = originalMoveSpeed;
         isInvincible = false;
     }
 
-    // Detect collision with any hazard
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the object colliding with the player has the "Hazard" tag
         if (other.CompareTag("Hazard"))
         {
-            // Apply damage when the player collides with a hazard
-            takeDamage(20);  // Adjust damage value as needed
+            takeDamage(20);
         }
     }
 }
