@@ -240,4 +240,20 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Teleported to " + targetPosition);
     }
 
+    //Smooth Teleportation 
+    public IEnumerator SmoothMove(Vector3 targetPosition, float duration)
+    {
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+    }
+
 }
