@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bbd4c647e85961948881124cc3a248eb
+guid: b85c18bb2a0454b4a87985516ffc09c8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 22
+  spritePixelsToUnits: 28
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton Attack_0
+      name: Skeleton Attack-export_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b8dd786257aeda4e9dc67661119b0b1
-      internalID: 1555236799
+      spriteID: b9ecdf00e6500fb479831f063f23f0ce
+      internalID: 485602449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_1
+      name: Skeleton Attack-export_1
       rect:
         serializedVersion: 2
-        x: 43
+        x: 24
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2daac6531c1d3c942bb0b5e54c619400
-      internalID: -1324560643
+      spriteID: 19e38cff76d350d4796d680b294dc031
+      internalID: 1347701939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_2
+      name: Skeleton Attack-export_2
       rect:
         serializedVersion: 2
-        x: 86
+        x: 48
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 827afa8da7386aa4d89b7e1bda3b8128
-      internalID: -1188659530
+      spriteID: 31c07626dd3933249893f8de344d6225
+      internalID: -1523398932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_3
+      name: Skeleton Attack-export_3
       rect:
         serializedVersion: 2
-        x: 129
+        x: 72
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb12edc52b68f58499e4892e308a7dd8
-      internalID: -245417677
+      spriteID: 515deba5e3310354f96afe73239710b5
+      internalID: 860852478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_4
+      name: Skeleton Attack-export_4
       rect:
         serializedVersion: 2
-        x: 172
+        x: 96
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac7fc813c98c6b942964bfc29cc6f4a7
-      internalID: -2140750323
+      spriteID: 87de6c4ac570c7f458a56e60c5858eee
+      internalID: -1147434783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_5
+      name: Skeleton Attack-export_5
       rect:
         serializedVersion: 2
-        x: 215
+        x: 120
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e8e296f40f9c14a80a9acc460d30f8
-      internalID: -470615044
+      spriteID: c9a34ecf9a1c22448a277a1af39281a9
+      internalID: -564275158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_6
+      name: Skeleton Attack-export_6
       rect:
         serializedVersion: 2
-        x: 258
+        x: 144
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 626c654a5aafd674fa0834907c2b3d1a
-      internalID: 1384248231
+      spriteID: f0c9bea766c414c409ec0e1ccf54d891
+      internalID: 367622721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_7
+      name: Skeleton Attack-export_7
       rect:
         serializedVersion: 2
-        x: 301
+        x: 168
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf0a1c6b7e49985468056665e08b33cd
-      internalID: -1042605464
+      spriteID: 53ba2efb94c698f419e9d5df384f6471
+      internalID: -1543734794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_8
+      name: Skeleton Attack-export_8
       rect:
         serializedVersion: 2
-        x: 344
+        x: 192
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,20 +299,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3bfeee9091720b45bdcdce05cbc5a95
-      internalID: -1976329083
+      spriteID: 43459fbe90216b543906d8705449683d
+      internalID: 46616663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_9
+      name: Skeleton Attack-export_9
       rect:
         serializedVersion: 2
-        x: 387
+        x: 216
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,20 +320,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ce4bfee21b5244458a47d4f79fcdc34
-      internalID: -1386004196
+      spriteID: cf48252a73f7ef04aa3d501b0eaab0cf
+      internalID: 1203507953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_10
+      name: Skeleton Attack-export_10
       rect:
         serializedVersion: 2
-        x: 430
+        x: 240
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,20 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b4aaa7efad5c01408ae8a5a3137ae4f
-      internalID: 2099157911
+      spriteID: f7c526b54d9b6b148a634fc36b8a361d
+      internalID: -1965536639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_11
+      name: Skeleton Attack-export_11
       rect:
         serializedVersion: 2
-        x: 473
+        x: 264
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,20 +362,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea611c06c4edfe43a4d49b1d638653e
-      internalID: -1877138948
+      spriteID: 83c04d3cc1ab64e4a9df754f3e340cd5
+      internalID: -1616081035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_12
+      name: Skeleton Attack-export_12
       rect:
         serializedVersion: 2
-        x: 516
+        x: 288
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,20 +383,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d9ff679b76cef2448276f73363f8cfb
-      internalID: -2014563687
+      spriteID: bf3782951d4006941a7bb9d5156b360e
+      internalID: -1537288294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_13
+      name: Skeleton Attack-export_13
       rect:
         serializedVersion: 2
-        x: 559
+        x: 312
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,20 +404,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93151db83837a4043b5aaed11d965e75
-      internalID: 77348392
+      spriteID: ebeec64fa53531e4493e38b49863837a
+      internalID: -242451215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_14
+      name: Skeleton Attack-export_14
       rect:
         serializedVersion: 2
-        x: 602
+        x: 336
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,20 +425,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 505c7483b03495b489212bd21465bb5d
-      internalID: -1062735277
+      spriteID: ba14c78e6e231504f8670b2dd8319214
+      internalID: 1321623935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_15
+      name: Skeleton Attack-export_15
       rect:
         serializedVersion: 2
-        x: 645
+        x: 360
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,20 +446,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 390eaf26623ae1f4aace94de2a993a89
-      internalID: -1062053271
+      spriteID: aaaef6e112ba8974190b54cbad4326ea
+      internalID: 852107236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_16
+      name: Skeleton Attack-export_16
       rect:
         serializedVersion: 2
-        x: 688
+        x: 384
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -467,20 +467,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f9d690bfd633e346909f8b3a2622cb0
-      internalID: -826125029
+      spriteID: b49ad3782926a7741adce9acc7d6e81b
+      internalID: 307421252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton Attack_17
+      name: Skeleton Attack-export_17
       rect:
         serializedVersion: 2
-        x: 731
+        x: 408
         y: 0
-        width: 43
-        height: 37
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -488,8 +488,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4c2355fde1a9ca43a3dfbb9a71b874d
-      internalID: -766144181
+      spriteID: bb2fefac8f65558458da9df8254471eb
+      internalID: 1848443796
       vertices: []
       indices: 
       edges: []
@@ -505,24 +505,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton Attack_0: 1555236799
-      Skeleton Attack_1: -1324560643
-      Skeleton Attack_10: 2099157911
-      Skeleton Attack_11: -1877138948
-      Skeleton Attack_12: -2014563687
-      Skeleton Attack_13: 77348392
-      Skeleton Attack_14: -1062735277
-      Skeleton Attack_15: -1062053271
-      Skeleton Attack_16: -826125029
-      Skeleton Attack_17: -766144181
-      Skeleton Attack_2: -1188659530
-      Skeleton Attack_3: -245417677
-      Skeleton Attack_4: -2140750323
-      Skeleton Attack_5: -470615044
-      Skeleton Attack_6: 1384248231
-      Skeleton Attack_7: -1042605464
-      Skeleton Attack_8: -1976329083
-      Skeleton Attack_9: -1386004196
+      Skeleton Attack-export_0: 485602449
+      Skeleton Attack-export_1: 1347701939
+      Skeleton Attack-export_10: -1965536639
+      Skeleton Attack-export_11: -1616081035
+      Skeleton Attack-export_12: -1537288294
+      Skeleton Attack-export_13: -242451215
+      Skeleton Attack-export_14: 1321623935
+      Skeleton Attack-export_15: 852107236
+      Skeleton Attack-export_16: 307421252
+      Skeleton Attack-export_17: 1848443796
+      Skeleton Attack-export_2: -1523398932
+      Skeleton Attack-export_3: 860852478
+      Skeleton Attack-export_4: -1147434783
+      Skeleton Attack-export_5: -564275158
+      Skeleton Attack-export_6: 367622721
+      Skeleton Attack-export_7: -1543734794
+      Skeleton Attack-export_8: 46616663
+      Skeleton Attack-export_9: 1203507953
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
