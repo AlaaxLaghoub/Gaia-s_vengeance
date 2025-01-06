@@ -29,10 +29,27 @@ public class CheckpointController : MonoBehaviour
     public void setSpawnPoint(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
+
+        // Update RespawnManager with the new checkpoint
+        if (RespawnManager.instance != null)
+        {
+            RespawnManager.instance.SetCheckpoint(spawnPoint);
+        }
+        else
+        {
+            Debug.LogError("RespawnManager instance not found! Ensure it exists in the scene.");
+        }
     }
 
     public void Respawn()
     {
-        RespawnManager.instance.RespawnPlayer(spawnPoint);
+        if (RespawnManager.instance != null)
+        {
+            RespawnManager.instance.RespawnPlayer(); // Call the no-argument RespawnPlayer method
+        }
+        else
+        {
+            Debug.LogError("RespawnManager instance not found! Ensure it exists in the scene.");
+        }
     }
 }

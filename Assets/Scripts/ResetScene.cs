@@ -1,20 +1,31 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for scene management
 
 public class ResetScene : MonoBehaviour
 {
+    public float respawnDelay = 0.7f; // Delay before respawning the player
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player")) // Check if the object is the player
         {
-            StartCoroutine(ResetSceneWithDelay(0.7f)); // Start coroutine with 1-second delay
+            StartCoroutine(RespawnPlayerWithDelay(other.gameObject, respawnDelay));
         }
     }
 
-    private IEnumerator ResetSceneWithDelay(float delay)
+    private IEnumerator RespawnPlayerWithDelay(GameObject player, float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload the active scene
+
+        // Check if RespawnManager is available
+        if (RespawnManager.instance != null)
+        {
+            Debug.Log("Respawning player using RespawnManager...");
+            RespawnManager.instance.RespawnPlayer(); // Respawn player at the last checkpoint
+        }
+        else
+        {
+            Debug.LogError("RespawnManager instance not found! Ensure it exists in the scene.");
+        }
     }
 }

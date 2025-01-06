@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAnimation()
     {
         anim.SetFloat("MoveSpeed", Mathf.Abs(playerRb.velocity.x));
-        anim.SetBool("isGrounded", isGrounded);
+        //anim.SetBool("isGrounded", isGrounded);
     }
 
     private IEnumerator SmoothDashCoroutine()
@@ -227,11 +227,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private IEnumerator ReloadScene()
-    {
-        yield return new WaitForSeconds(0.8f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    // private IEnumerator ReloadScene()
+    // {
+    //     yield return new WaitForSeconds(0.8f);
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    // }
 
     private IEnumerator HurtAnimationCoroutine()
     {
