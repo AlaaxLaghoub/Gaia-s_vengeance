@@ -180,29 +180,52 @@ public class PlayerMovement : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        if (!isInvincible)
+        if (currentHealth <= 0 || isInvincible) return; // Prevent damage if already dead or invincible
+
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
         {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-
+            Die();
+        }
+        else
+        {
             StartCoroutine(HurtAnimationCoroutine());
-
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-            else
-            {
-                StartCoroutine(InvincibilityCoroutine());
-            }
+            StartCoroutine(InvincibilityCoroutine());
         }
     }
+
 
     private void Die()
     {
         anim.SetTrigger("Die");
-        StartCoroutine(ReloadScene());
+        StartCoroutine(RespawnAfterDelay());
     }
+
+    private IEnumerator RespawnAfterDelay()
+    {
+        yield return new WaitForSeconds(0.8f); // Wait for the death animation
+        CheckpointController.instance.Respawn(); // Respawn the player
+    }
+    public void ResetAnimationState()
+    {
+        anim.ResetTrigger("Die"); // Reset the death trigger
+        anim.SetBool("Respawn", true); // Set respawn state to true
+        anim.ResetTrigger("Hurt"); // Reset Hurt trigger
+
+        // Optional: Reset Respawn after some time
+        StartCoroutine(ResetRespawnBool());
+        anim.Play("Idle"); // Force Idle state
+
+    }
+
+    private IEnumerator ResetRespawnBool()
+    {
+        yield return new WaitForSeconds(10f); // Wait for the death animation
+        anim.SetBool("Respawn", false);
+    }
+
 
     private IEnumerator ReloadScene()
     {
