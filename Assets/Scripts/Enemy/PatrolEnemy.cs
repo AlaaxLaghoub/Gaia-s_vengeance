@@ -24,19 +24,20 @@ public class PatrolEnemy : MonoBehaviour
     private int currentPointIndex = 0;
     private bool isWaiting = false;
     private bool isAttacking = false;
+    public bool isFrozen = false; // To track if the enemy is frozen
 
     private void Update()
     {
-        // Patrol movement
+        FreezeHandler freezeHandler = GetComponent<FreezeHandler>();
+        if (freezeHandler != null && freezeHandler.IsFrozen()) return;
+
         if (!isWaiting && !isAttacking)
         {
             Patrol();
         }
 
-        // Update cooldown timer
         cooldownTimer += Time.deltaTime;
 
-        // Detect the player and start the attack sequence if within range
         if (PlayerInSight() && !isAttacking && cooldownTimer >= 2.5f)
         {
             StartCoroutine(AttackPlayer());
@@ -88,8 +89,6 @@ public class PatrolEnemy : MonoBehaviour
         anim.SetTrigger("hit");
         cooldownTimer = 0f; // Reset cooldown
 
-        Debug.Log("Starting attack sequence.");
-
         // Wait for the attack animation to reach the damage point
         yield return new WaitForSeconds(0.6f);
 
@@ -100,13 +99,12 @@ public class PatrolEnemy : MonoBehaviour
             PlayerMovement player = playerCollider.GetComponent<PlayerMovement>();
             if (player != null)
             {
-                Debug.Log("Damaging player...");
                 player.takeDamage(damage);
             }
         }
 
         // Wait for the attack animation to finish before resuming patrol
-        yield return new WaitForSeconds(2f); 
+        yield return new WaitForSeconds(2f);
         isAttacking = false;
     }
 
@@ -118,10 +116,25 @@ public class PatrolEnemy : MonoBehaviour
         }
     }
 
+
     private void OnDrawGizmos()
     {
-        // Visualize attack range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        if (patrolPoints != null)
+        {
+            Gizmos.color = Color.green;
+            foreach (Transform point in patrolPoints)
+            {
+                Gizmos.DrawWireSphere(point.position, 0.1f);
+            }
+        }
+
+        Gizmos.color = Color.blue;
+        for (int i = 0; i < patrolPoints.Length - 1; i++)
+        {
+            Gizmos.DrawLine(patrolPoints[i].position, patrolPoints[i + 1].position);
+        }
     }
 }
