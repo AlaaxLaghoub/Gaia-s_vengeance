@@ -6,18 +6,26 @@ public class FreezeHandler : MonoBehaviour
     private bool isFrozen = false;
     private float originalSpeed;
     private PatrolEnemy patrolEnemy;
+    private SpiderEnemyAI spiderEnemyAI;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private Collider2D attackCollider; // To disable attack detection
 
     private void Awake()
     {
         patrolEnemy = GetComponent<PatrolEnemy>();
+        spiderEnemyAI = GetComponent<SpiderEnemyAI>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        attackCollider = GetComponent<Collider2D>();
 
         if (patrolEnemy != null)
         {
             originalSpeed = patrolEnemy.speed;
+        }
+        else if (spiderEnemyAI != null)
+        {
+            originalSpeed = spiderEnemyAI.speed;
         }
     }
 
@@ -27,10 +35,20 @@ public class FreezeHandler : MonoBehaviour
 
         isFrozen = true;
 
-        // Stop patrol enemy movement
+        // Stop enemy movement
         if (patrolEnemy != null)
         {
             patrolEnemy.speed = 0;
+        }
+        else if (spiderEnemyAI != null)
+        {
+            spiderEnemyAI.speed = 0;
+        }
+
+        // Disable attack capabilities
+        if (attackCollider != null)
+        {
+            attackCollider.enabled = false;
         }
 
         // Completely disable the Animator to stop animations
@@ -53,10 +71,20 @@ public class FreezeHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(freezeDuration);
 
-        // Restore patrol enemy speed
+        // Restore enemy speed
         if (patrolEnemy != null)
         {
             patrolEnemy.speed = originalSpeed;
+        }
+        else if (spiderEnemyAI != null)
+        {
+            spiderEnemyAI.speed = originalSpeed;
+        }
+
+        // Re-enable attack capabilities
+        if (attackCollider != null)
+        {
+            attackCollider.enabled = true;
         }
 
         // Re-enable animations

@@ -7,6 +7,7 @@ TagManager:
   - platform
   - Enemy
   - Hazard
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -58,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1311520663
+    locked: 0
+  - name: water
+    uniqueID: 2719619315
     locked: 0

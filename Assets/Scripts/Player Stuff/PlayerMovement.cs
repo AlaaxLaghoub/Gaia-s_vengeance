@@ -10,6 +10,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float doubleJumpForce = 8f;
     [SerializeField] private float invincibleMoveSpeedFactor = 0.5f;
 
+    [Header("Water Settings")]
+    [SerializeField] private float waterMoveSpeedFactor = 0.5f; // Speed reduction in water
+    [SerializeField] private float waterJumpForceFactor = 0.7f; // Jump reduction in water
+    private bool isInWater = false; // Check if the player is in water
+
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask whatIsGround;
@@ -25,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isInvincible = false;
 
     [Header("Dash Settings")]
-    [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float dashSpeed = 15f;
+    [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashAcceleration = 30f;
     [SerializeField] private float dashCooldown = 1f;
     private bool isDashing = false;
@@ -139,29 +144,31 @@ public class PlayerMovement : MonoBehaviour
             dashEffect.Play();
         }
 
-        float direction = spriteRenderer.flipX ? -1f : 1f;
-        float targetSpeed = dashSpeed * direction;
+        float direction = Mathf.Sign(transform.localScale.x); // Determine direction based on player's scale (-1 for left, 1 for right)
         float originalGravity = playerRb.gravityScale;
-        playerRb.gravityScale = 0; // Disable gravity for smooth horizontal motion
+        playerRb.gravityScale = 0; // Disable gravity during dash
 
-        // Gradually accelerate to dash speed
-        while (Mathf.Abs(playerRb.velocity.x) < Mathf.Abs(targetSpeed))
+        float elapsedTime = 0f;
+        float currentSpeed = dashSpeed; // Start with max dash speed
+
+        while (elapsedTime < dashDuration)
         {
-            playerRb.velocity = new Vector2(Mathf.MoveTowards(playerRb.velocity.x, targetSpeed, dashAcceleration * Time.deltaTime), 0);
+            // Gradually decrease the speed for a smoother stop
+            currentSpeed = Mathf.Lerp(dashSpeed, 0, elapsedTime / dashDuration);
+
+            // Apply velocity based on the current speed
+            playerRb.velocity = new Vector2(currentSpeed * direction, 0);
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Maintain dash speed for dash duration
-        yield return new WaitForSeconds(dashDuration);
+        // Stop movement at the end of the dash
+        playerRb.velocity = Vector2.zero;
 
-        // Gradually decelerate back to zero
-        while (Mathf.Abs(playerRb.velocity.x) > 0)
-        {
-            playerRb.velocity = new Vector2(Mathf.MoveTowards(playerRb.velocity.x, 0, dashAcceleration * Time.deltaTime), 0);
-            yield return null;
-        }
+        // Restore gravity
+        playerRb.gravityScale = originalGravity;
 
-        playerRb.gravityScale = originalGravity; // Restore gravity
         isDashing = false;
 
         // Stop particle effect
@@ -174,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
 
     private void OnDrawGizmosSelected()
     {
@@ -232,13 +240,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Respawn", false);
     }
 
-
-    // private IEnumerator ReloadScene()
-    // {
-    //     yield return new WaitForSeconds(0.8f);
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    // }
-
     private IEnumerator HurtAnimationCoroutine()
     {
         anim.SetTrigger("Hurt");
@@ -258,11 +259,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Water"))
+        {
+            EnterWater();
+        }
+
         if (other.CompareTag("Enemy"))
         {
             takeDamage(20);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            ExitWater();
+        }
+    }
+    private void EnterWater()
+    {
+        isInWater = true;
+        moveSpeed *= waterMoveSpeedFactor; // Reduce speed in water
+        Debug.Log("Entered water. Speed reduced.");
+    }
+
+    private void ExitWater()
+    {
+        isInWater = false;
+        moveSpeed = originalMoveSpeed; // Restore speed
+        Debug.Log("Exited water. Speed restored.");
+    }
+
     public void Teleport(Vector3 targetPosition)
     {
         transform.position = targetPosition;

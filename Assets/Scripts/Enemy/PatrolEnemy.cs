@@ -116,7 +116,6 @@ public class PatrolEnemy : MonoBehaviour
         }
     }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
