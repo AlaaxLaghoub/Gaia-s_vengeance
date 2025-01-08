@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Debug the player's facing direction
+        Debug.Log($"Player scale X: {transform.localScale.x}");
         if (!isDashing)
         {
             HandleMovement();
@@ -78,18 +80,22 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        // Set velocity based on player input
         Vector2 newVelocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
         playerRb.velocity = newVelocity;
 
-        if (horizontalInput < 0)
+        // Flip the player's localScale based on movement direction
+        if (horizontalInput < 0) // Moving left
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
-        else if (horizontalInput > 0)
+        else if (horizontalInput > 0) // Moving right
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
     }
+
 
     private void HandleJump()
     {

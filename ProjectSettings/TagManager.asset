@@ -17,8 +17,8 @@ TagManager:
   - Platform
   - Player
   - Enemy
-  - Exttras
-  - 
+  - Extras
+  - Spell
   - 
   - 
   - 
@@ -50,9 +50,12 @@ TagManager:
   - name: Decorations
     uniqueID: 3592451337
     locked: 0
-  - name: Player
-    uniqueID: 1311520663
-    locked: 0
   - name: Ground
     uniqueID: 3715968033
+    locked: 0
+  - name: Spell
+    uniqueID: 30768659
+    locked: 0
+  - name: Player
+    uniqueID: 1311520663
     locked: 0
