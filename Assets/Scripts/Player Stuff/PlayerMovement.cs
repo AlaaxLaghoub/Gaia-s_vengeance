@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
+    private Vector2 windForce = Vector2.zero;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float doubleJumpForce = 8f;
@@ -81,25 +82,37 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(SmoothDashCoroutine());
         }
     }
+    void FixedUpdate() {
+        ApplyWindForce();
 
+    }
     private void HandleMovement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
+        // Calculate effective move speed (reduced by wind force)
+        float effectiveMoveSpeed = moveSpeed;
+        if (windForce != Vector2.zero)
+        {
+            effectiveMoveSpeed -= Mathf.Abs(Vector2.Dot(windForce.normalized, Vector2.right)) * windForce.magnitude;
+            effectiveMoveSpeed = Mathf.Max(effectiveMoveSpeed, 1f); // Prevent movement from completely stopping
+        }
+
         // Set velocity based on player input
-        Vector2 newVelocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
+        Vector2 newVelocity = new Vector2(horizontalInput * effectiveMoveSpeed, playerRb.velocity.y);
         playerRb.velocity = newVelocity;
 
         // Flip the player's localScale based on movement direction
-        if (horizontalInput < 0) // Moving left
+        if (horizontalInput < 0)
         {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
-        else if (horizontalInput > 0) // Moving right
+        else if (horizontalInput > 0)
         {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
     }
+
 
     private void HandleJump()
     {
@@ -329,6 +342,22 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth); // Ensure health doesn't exceed maxHealth
         healthBar.SetHealth(currentHealth);
     }
+    public void EnterWindZone(Vector2 force)
+    {
+        windForce = force;
+        Debug.Log("Entered wind zone. Wind force: " + force);
+    }
 
-
+    public void ExitWindZone()
+    {
+        windForce = Vector2.zero;
+        Debug.Log("Exited wind zone. Wind force stopped.");
+    }
+    private void ApplyWindForce()
+    {
+        if (windForce != Vector2.zero)
+        {
+            playerRb.AddForce(windForce, ForceMode2D.Force);
+        }
+    }
 }
