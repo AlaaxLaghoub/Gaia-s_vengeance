@@ -101,23 +101,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     private void HandleJump()
     {
+        // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
 
         if (isGrounded)
         {
-            jumpCount = 0;
+            jumpCount = 0; // Reset jump count when grounded
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded || jumpCount < 1)
+            if (isGrounded) // Perform first jump
             {
-                float currentJumpForce = (jumpCount == 0) ? jumpForce : doubleJumpForce;
-                playerRb.velocity = new Vector2(playerRb.velocity.x, currentJumpForce);
-                jumpCount++;
+                playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+                jumpCount = 1; // Set jump count to 1 after the first jump
+                Debug.Log("First jump executed");
+            }
+            else if (jumpCount == 1) // Perform double jump
+            {
+                playerRb.velocity = new Vector2(playerRb.velocity.x, doubleJumpForce);
+                jumpCount++; // Increment to prevent further jumps
+                Debug.Log("Double jump executed");
             }
         }
 
@@ -125,7 +131,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y * 0.5f);
         }
+
+        Debug.Log($"Grounded: {isGrounded}, JumpCount: {jumpCount}, VelocityY: {playerRb.velocity.y}");
     }
+
 
     private void UpdateAnimation()
     {
