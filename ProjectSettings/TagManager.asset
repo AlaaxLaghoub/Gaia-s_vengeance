@@ -45,9 +45,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: platform
-    uniqueID: 819789429
-    locked: 0
   - name: Decorations
     uniqueID: 3592451337
     locked: 0
@@ -59,6 +56,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1311520663
+    locked: 0
+  - name: platform
+    uniqueID: 819789429
     locked: 0
   - name: water
     uniqueID: 2719619315

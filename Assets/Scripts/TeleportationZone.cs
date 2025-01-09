@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TeleportationZone : MonoBehaviour
 {
@@ -22,6 +20,13 @@ public class TeleportationZone : MonoBehaviour
 
     private IEnumerator SmoothTeleport(PlayerMovement player)
     {
+        // Disable player movement and stop Rigidbody2D velocity
+        player.enabled = false;
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        Animator anim = player.GetComponent<Animator>();
+        if (rb != null) rb.velocity = Vector2.zero; // Stop movement
+        if (anim != null) anim.SetFloat("MoveSpeed", 0f); // Stop animations
+
         // Fade out
         yield return screenFader.FadeOut();
 
@@ -30,5 +35,8 @@ public class TeleportationZone : MonoBehaviour
 
         // Fade in
         yield return screenFader.FadeIn();
+
+        // Re-enable player movement
+        player.enabled = true;
     }
 }
