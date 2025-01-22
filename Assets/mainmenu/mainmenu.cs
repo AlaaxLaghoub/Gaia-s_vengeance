@@ -10,6 +10,7 @@ public class mainmenu : MonoBehaviour
     [Header("volume setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumSlider = null;
+    [SerializeField] private float defaulvolume = 1.0f;
 
     [Header("Confirmation prompt")]
     [SerializeField] private GameObject confirmationPrompt = null;
@@ -35,6 +36,18 @@ public class mainmenu : MonoBehaviour
         PlayerPrefs.SetFloat("master volume", AudioListener.volume);
         //show a prompt
         StartCoroutine(ConfirmationBox()); 
+    }
+
+    public void ResetButtom(string MenuType)
+    {
+        if (MenuType == "Audio")
+        {
+            AudioListener.volume = defaulvolume;
+            volumSlider.value = defaulvolume;
+            volumeTextValue.text = defaulvolume.ToString("0.0");
+            VolumeApply();
+        }
+
     }
 
     public IEnumerator ConfirmationBox()
