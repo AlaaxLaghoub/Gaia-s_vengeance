@@ -81,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(SmoothDashCoroutine());
         }
+        // isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround | LayerMask.GetMask("MovableBlock"));
+
     }
     void FixedUpdate() {
         ApplyWindForce();
@@ -216,13 +218,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        if (currentHealth <= 0 || isInvincible) return; // Prevent damage if already dead or invincible
+        if (currentHealth <= 0 || isInvincible)
+        {
+            Debug.Log("Damage ignored. Invincible: " + isInvincible);
+            return;
+        }
 
         currentHealth -= damage;
+        Debug.Log("Player took damage. Current health: " + currentHealth);
         healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
+            Debug.Log("Player is dead.");
             Die();
         }
         else
@@ -231,7 +239,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(InvincibilityCoroutine());
         }
     }
-
 
     private void Die()
     {
