@@ -81,11 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(SmoothDashCoroutine());
         }
-        // isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround | LayerMask.GetMask("MovableBlock"));
-
-    }
-    void FixedUpdate() {
-        ApplyWindForce();
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround | LayerMask.GetMask("MovableBlock"));
 
     }
     private void HandleMovement()
