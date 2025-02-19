@@ -9,7 +9,7 @@ public class ItemsCanvasManager : MonoBehaviour
     public ItemDisplayPanel itemDisplayPanel;
 
     [Header("Key Bindings")]
-    public KeyCode inventoryKey = KeyCode.I;
+    private KeyCode inventoryKey = KeyCode.I;
     public KeyCode firstItemKey = KeyCode.K;
     public KeyCode secondItemKey = KeyCode.L;
 
