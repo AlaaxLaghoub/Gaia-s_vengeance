@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Yellow Potion
   description: Health potion
   itemSprite: {fileID: 989559233, guid: 4a0f0b9bc89fa4449bbde045dae67eef, type: 3}
-  stackCount: 0
+  stackCount: 5
