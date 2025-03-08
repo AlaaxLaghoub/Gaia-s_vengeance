@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Blue Potion
   description: Stamina potion
   itemSprite: {fileID: -342822150, guid: 669242433ca460840a40d15172623c01, type: 3}
-  stackCount: 3
+  stackCount: 0

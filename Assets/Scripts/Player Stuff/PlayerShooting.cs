@@ -35,14 +35,17 @@ public class PlayerShooting : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        // Ensure all UI elements are correctly assigned
-        if (potionDisplay == null || firePotionImage == null || icePotionImage == null || firePotionText == null || icePotionText == null)
+        InventoryUI inventory = FindObjectOfType<InventoryUI>();
+        if (inventory != null)
         {
-            Debug.LogError("Some potion UI elements are missing! Assign them in the Inspector.");
-            return;
+            foreach (var item in inventory.inventoryItems)
+            {
+                if (item.itemName == "Fire Potion") fireballUnlocked = true;
+                if (item.itemName == "Ice Potion") iceShardUnlocked = true;
+            }
         }
 
-        HidePotionDisplay(); // Hide UI at start
+        HidePotionDisplay();
     }
 
     private void Update()

@@ -48,5 +48,23 @@ public class InventoryUI : MonoBehaviour
             itemUI.SetItem(inventoryItems[i]);
         }
     }
+    public void AddToInventory(InventoryItem item)
+    {
+        Debug.Log("Adding to inventory: " + item.itemName);
+
+        foreach (var inventoryItem in inventoryItems)
+        {
+            if (inventoryItem.itemName == item.itemName)
+            {
+                Debug.Log("Item already exists in inventory.");
+                return;
+            }
+        }
+
+        inventoryItems.Add(item);
+        Debug.Log("Inventory count after adding: " + inventoryItems.Count);
+        GenerateInventoryUI();
+    }
+
 
 }
