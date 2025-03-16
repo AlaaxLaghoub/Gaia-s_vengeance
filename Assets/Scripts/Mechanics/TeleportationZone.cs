@@ -24,7 +24,12 @@ public class TeleportationZone : MonoBehaviour
         player.enabled = false;
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         Animator anim = player.GetComponent<Animator>();
-        if (rb != null) rb.velocity = Vector2.zero; // Stop movement
+        if (rb != null) 
+        {
+            rb.velocity = Vector2.zero; // Stop movement
+            rb.isKinematic = true;
+        } 
+
         if (anim != null) anim.SetFloat("MoveSpeed", 0f); // Stop animations
 
         // Fade out
@@ -38,5 +43,6 @@ public class TeleportationZone : MonoBehaviour
 
         // Re-enable player movement
         player.enabled = true;
+        rb.isKinematic = false;
     }
 }
