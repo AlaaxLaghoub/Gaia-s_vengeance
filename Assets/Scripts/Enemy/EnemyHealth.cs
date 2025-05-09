@@ -5,10 +5,13 @@ public class EnemyHealth : MonoBehaviour
     public float health = 50f; // Enemy's health
     private Animator anim; // Reference to the Animator
     private bool isDead = false; // To track if the enemy is already dead
+    public AudioClip Death3;
+    private AudioSource deathAudio;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        deathAudio = GetComponent<AudioSource>();
         if (anim == null)
         {
             Debug.LogError("No Animator component found on this object!");
@@ -31,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return; // Prevent multiple calls to Die()
 
         isDead = true; // Set the enemy's state to dead
+        deathAudio.PlayOneShot(Death3, 1.0f);
         anim.SetTrigger("Die"); // Trigger the death animation
 
         // Disable all colliders on the enemy
