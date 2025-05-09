@@ -7,6 +7,13 @@ public class HealingPotion : MonoBehaviour
 {
     [SerializeField] private int healAmount = 20; // Amount of health restored
     [SerializeField] private float hideDuration = 80.9f; // Time to hide before destroying
+    private AudioSource healAudio;
+    public AudioClip healSound;
+
+    void Start()
+    {
+        healAudio = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +23,7 @@ public class HealingPotion : MonoBehaviour
             if (player != null)
             {
                 player.Heal(healAmount); // Heal the player
+                healAudio.PlayOneShot(healSound, 1.0f);
                 HidePotion(); // Hide the potion
             }
         }

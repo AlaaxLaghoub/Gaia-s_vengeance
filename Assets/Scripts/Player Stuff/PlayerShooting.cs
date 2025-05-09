@@ -12,6 +12,7 @@ public class PlayerShooting : MonoBehaviour
     public float fireballSpeed = 10f;
     public float iceShardSpeed = 7f;
     public float cooldownTime = 0.6f;
+    public AudioClip fireballSound;
 
     [Header("Unlocked Spells")]
     public bool fireballUnlocked = false;
@@ -30,10 +31,12 @@ public class PlayerShooting : MonoBehaviour
     private Animator anim;
     private float lastShootTime;
     private Coroutine hideUICoroutine;
+    private AudioSource playerAudio;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
 
         InventoryUI inventory = FindObjectOfType<InventoryUI>();
         if (inventory != null)
@@ -62,6 +65,7 @@ public class PlayerShooting : MonoBehaviour
         if (fireballUnlocked && Input.GetKey(KeyCode.Alpha1))
         {
             ShootSpell(fireballPrefab, fireballSpeed, firePotionText, firePotionImage, "Fireball Activated!");
+            playerAudio.PlayOneShot(fireballSound, 1.0f);
             isShooting = true;
         }
         else if (iceShardUnlocked && Input.GetKey(KeyCode.Alpha2))

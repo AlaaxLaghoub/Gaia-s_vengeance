@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashAcceleration = 30f;
     [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private AudioClip dashSound;
+
     private bool isDashing = false;
     private bool canDash = true;
 
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private int jumpCount = 0;
-
+    private AudioSource playerAudio;
     private float originalMoveSpeed;
    
 
@@ -57,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        playerAudio = GetComponent<AudioSource>();
         originalMoveSpeed = moveSpeed;
         
 
@@ -164,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashEffect != null)
         {
             dashEffect.Play();
-            
+            playerAudio.PlayOneShot(dashSound, 1.0f);
         }
 
         float direction = Mathf.Sign(transform.localScale.x); // Determine direction based on player's scale (-1 for left, 1 for right)

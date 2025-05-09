@@ -20,11 +20,19 @@ public class PatrolEnemy : MonoBehaviour
 
     [Header("Animator")]
     public Animator anim;
+    public AudioClip axeSound;
 
+    private AudioSource skeletonAudio;
     private int currentPointIndex = 0;
     private bool isWaiting = false;
     private bool isAttacking = false;
     public bool isFrozen = false; // To track if the enemy is frozen
+
+
+    private void Start()
+    {
+        skeletonAudio = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -85,6 +93,7 @@ public class PatrolEnemy : MonoBehaviour
     private IEnumerator AttackPlayer()
     {
         isAttacking = true;
+        skeletonAudio.PlayOneShot(axeSound, 1.0f);
         anim.SetBool("moving", false); // Stop moving during attack
         anim.SetTrigger("hit");
         cooldownTimer = 0f; // Reset cooldown
