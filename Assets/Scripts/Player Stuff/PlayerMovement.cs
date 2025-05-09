@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
+    public AudioClip Death1; 
 
     [Header("Invincibility Settings")]
     [SerializeField] private float invincibilityDuration = 2f;
@@ -245,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
     private void Die()
     {
         anim.SetTrigger("Die");
+        playerAudio.PlayOneShot(Death1, 1.0f);
         StartCoroutine(RespawnAfterDelay());
     }
 

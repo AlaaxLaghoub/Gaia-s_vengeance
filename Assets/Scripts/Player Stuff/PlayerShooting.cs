@@ -13,6 +13,7 @@ public class PlayerShooting : MonoBehaviour
     public float iceShardSpeed = 7f;
     public float cooldownTime = 0.6f;
     public AudioClip fireballSound;
+    public AudioClip iceShardSound;
 
     [Header("Unlocked Spells")]
     public bool fireballUnlocked = false;
@@ -71,6 +72,7 @@ public class PlayerShooting : MonoBehaviour
         else if (iceShardUnlocked && Input.GetKey(KeyCode.Alpha2))
         {
             ShootSpell(iceShardPrefab, iceShardSpeed, icePotionText, icePotionImage, "Ice Shard Activated!");
+            playerAudio.PlayOneShot(iceShardSound, 1.0f);
             isShooting = true;
         }
 
