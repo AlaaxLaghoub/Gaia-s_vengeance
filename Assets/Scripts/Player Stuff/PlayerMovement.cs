@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashAcceleration = 30f;
     [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private AudioClip dashSound;
+    [SerializeField] private AudioClip deathbyenemySound;
 
     private bool isDashing = false;
     private bool canDash = true;
@@ -234,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Player is dead.");
             Die();
+            playerAudio.PlayOneShot(deathbyenemySound, 1.0f);
         }
         else
         {
