@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCount = 0;
 
     private float originalMoveSpeed;
+   
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         originalMoveSpeed = moveSpeed;
+        
 
         // Ensure the dash effect is stopped initially
         if (dashEffect != null)
@@ -162,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashEffect != null)
         {
             dashEffect.Play();
+            
         }
 
         float direction = Mathf.Sign(transform.localScale.x); // Determine direction based on player's scale (-1 for left, 1 for right)
@@ -200,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
         // Wait for cooldown
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+
     }
 
 
