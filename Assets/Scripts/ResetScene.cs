@@ -4,11 +4,19 @@ using UnityEngine;
 public class ResetScene : MonoBehaviour
 {
     public float respawnDelay = 0.7f; // Delay before respawning the player
+    public AudioClip Death2;
+    private AudioSource deathAudio;
+
+    private void Start()
+    {
+        deathAudio = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) // Check if the object is the player
         {
+            deathAudio.PlayOneShot(Death2, 1.0f);
             StartCoroutine(RespawnPlayerWithDelay(other.gameObject, respawnDelay));
         }
     }
