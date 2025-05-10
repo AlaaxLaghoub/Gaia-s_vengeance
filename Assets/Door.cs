@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Door : MonoBehaviour
 {
@@ -6,7 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] GameObject myDoor;
     public bool KeyPickedUp;
 
-    [SerializeField] GlobalLightController lightController; // 🔆 Add reference to light controller
+    [SerializeField] GlobalLightController lightController; 
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +17,7 @@ public class Door : MonoBehaviour
         {
             Debug.Log("Key collided with door");
             locked = false;
-            lightController.TurnLightBackOn(); // 🔆 Turn on the light here
+            lightController.TurnLightBackOn(); 
             Destroy(myDoor, 0.6f);
             other.gameObject.SetActive(false);
         }
@@ -27,4 +30,5 @@ public class Door : MonoBehaviour
             locked = true;
         }
     }
+
 }
