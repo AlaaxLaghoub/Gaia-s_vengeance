@@ -158,6 +158,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556062235f4ec0844a22e6750627cc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeDuration: 3
+  freezeDuration: 5
   lifetime: 3
-  hitSound: {fileID: 0}

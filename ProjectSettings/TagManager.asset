@@ -9,6 +9,7 @@ TagManager:
   - Hazard
   - Water
   - MovableBlock
+  - Key
   layers:
   - Default
   - TransparentFX
