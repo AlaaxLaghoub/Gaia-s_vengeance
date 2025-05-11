@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandleJump()
     {
         // Check if the player is grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround | LayerMask.GetMask("MovableBlock"));
 
         if (isGrounded)
         {
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 jumpCount = 1; // Set jump count to 1 after the first jump
                 Debug.Log("First jump executed");
             }
-            else if (jumpCount == 1) // Perform double jump
+            else if (jumpCount == 1 && !isGrounded) // Perform double jump only if we're in the air
             {
                 playerRb.velocity = new Vector2(playerRb.velocity.x, doubleJumpForce);
                 jumpCount++; // Increment to prevent further jumps
@@ -147,8 +147,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y * 0.5f);
         }
-
-        Debug.Log($"Grounded: {isGrounded}, JumpCount: {jumpCount}, VelocityY: {playerRb.velocity.y}");
     }
 
 
