@@ -1,0 +1,23 @@
+﻿{
+    "inkVersion": 21,
+    "root": [
+      [
+        "^Hey, you're up.",
+        "\n",
+        "^Use the arrow keys or WASD to move.",
+        "\n",
+        "^Press Space to jump. You can double jump too.",
+        "\n",
+        "^Hold Shift to dash.",
+        "\n",
+        "^That’s it for now. I’ll be around.",
+        "\n",
+        ["done", {"#f":5, "#n":"forest_intro"}],
+        null
+      ],
+      "done",
+      {"#f":1}
+    ],
+    "listDefs": {}
+  }
+  

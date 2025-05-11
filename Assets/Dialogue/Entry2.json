@@ -1,0 +1,17 @@
+﻿{
+    "inkVersion": 21,
+    "root": [
+      [
+        "^Careful — that one's not friendly.",
+        "\n",
+        "^Use fire or ice to deal with enemies. Try pressing 1 or 2.",
+        "\n",
+        ["done", {"#f":3, "#n":"first_enemy"}],
+        null
+      ],
+      "done",
+      {"#f":1}
+    ],
+    "listDefs": {}
+  }
+  

@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [HideInInspector]
+    public bool dialoguePlaying = false;
+
     [Header("Movement Settings")]
     private Vector2 windForce = Vector2.zero;
     [SerializeField] private float moveSpeed = 5f;
@@ -73,6 +76,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (dialoguePlaying)
+        {
+            // Freeze all movement input
+            playerRb.velocity = Vector2.zero;
+            anim.SetFloat("MoveSpeed", 0);
+            return;
+        }
         // Debug the player's facing direction
         Debug.Log($"Player scale X: {transform.localScale.x}");
         if (!isDashing)

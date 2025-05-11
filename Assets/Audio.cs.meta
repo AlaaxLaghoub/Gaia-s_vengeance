@@ -5,7 +5,11 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - audioSource: {instanceID: 0}
-  - dashSound: {fileID: 8300000, guid: fa5f32a553dd7584ab35ebb573ceaa96, type: 3}
+  - dashSound: {instanceID: 0}
+  - deathSound: {instanceID: 0}
+  - deathSound2: {instanceID: 0}
+  - skeletonDeathSound: {instanceID: 0}
+  - blip: {fileID: 8300000, guid: fa7eae7123ff84d4d94130615accdd67, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

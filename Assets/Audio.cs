@@ -12,7 +12,7 @@ public class Audio : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip deathSound2;
     public AudioClip skeletonDeathSound;
-    
+    public AudioClip blip;
 
     // Start is called before the first frame update
     void Start()
